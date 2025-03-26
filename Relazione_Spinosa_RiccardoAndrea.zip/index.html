@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+<meta charset="utf-8">
+<title> Relazione Riccardo Andrea Spinosa</title>    
+</head>
+<body>
+    <center><img src="images/Logo-uniparthenope.gif" alt="LOGO PARTHENOPE" width="300" height="300"></center>
+    <center><h1>PROGRAMMAZIONE 1 E LAB. DI PROGRAMMAZIONE</h1></center>
+    
+    <p style="text-align: right;"> <b>NOME:</b> Riccardo Andrea <br>
+        <b>COGNOME:</b> Spinosa <br>
+        <b>MATRICOLA:</b>0124002253 <br>
+        <b>CFU </b> 12<br>
+        <b>AA:</b> 2020\21
+    </p>
+    <center><H3>TRACCE ASSEGNATE</H3></center>
+     <center><H4><b>Cifratura-decifratura </H4></b><br></center>
+        <center><img src="images/Cifratura.jpg" alt="Cifratura" width="300" height="250">  <img src="images/decifratura.jpg" alt="Decifratura" width="300" height="250"> </center><br>
+        
+        
+        Sviluppare una coppia di algoritmi, implementati come function, per crittografare e
+        decrittografare un messaggio. L’algoritmo si basa sulla cosiddetta cifratura
+        polialfabetica, che consiste nel trasformare il messaggio in un testo di lunghezza uguale a
+        quella del messaggio, detto il “testo cifrato”, utilizzando un altro testo (prefissato), detto
+        “il testo delle lettere chiave”. Ogni lettera del messaggio viene trasformate in una lettera
+        del testo cifrato nel seguente modo: la lettera del messaggio viene sostituita dalla lettera
+        dell’alfabeto successiva, se la corrispondente lettera chiave (nel testo delle lettere chiave)
+        è B, da quella due volte successiva se la lettera chiave è C, da quella 3 volte successiva
+        se la lettera chiave è D e così via; se la lettera chiave è A, la lettera del messaggio non
+        viene modificata. L’alfabeto deve essere considerato come circolare, nel senso che la
+        lettera successiva alla lettera Z è la lettera A. Per esempio, se il messaggio è
+        THEPRESIDENT allora se il testo delle parole chiave è CODECODECODE allora il
+        messaggio cifrato è VVHTTSVMFSQX; si osservi che in generale il testo delle lettere
+        chiave si ottiene a partire da una parola chiave ripetuta più volte (CODE nel caso in
+        esame). La corrispondenza: lettera del messaggio - lettera del testo cifrato - lettera chiave
+        è evidente scrivendo i tre testi nel seguente modo
+        (alfabeto:ABCDEFGHIJKLMNOPQRSTYVWXYZ).</p>
+     <center><img src="images/tabella cifratura.PNG" alt="TABELLA CIFRATURA" ></center> <br>
+        Il main legge da tastiera il messaggio da crittografare (l’equivalente di THEPRESIDENT
+        nell’esempio), legge da tastiera la parola chiave (l’equivalente di CODE nell’esempio;
+        osservate che non è necessario leggere tutto il testo delle parole chiavi, perché questo
+        può essere ottenuto a partire dalla parola chiave), chiama la function di cifratura
+        (passando come parametro il messaggio e la parola chiave), che restituisce il teso
+        cifrato, visualizza il testo cifrato, chiama la function di decifratura, passando come
+        parametro il testo cifrato e la parola chiave, visualizza il messaggio decifrato, che deve
+        coincidere con il messaggio di partenza. Usare solo lettere maiuscole e non usare la
+        spaziatura. Usare le stringhe per rappresentare tutti i tipi di testo e le function in string
+        (serve solo la strlen). E’ utile sapere che in C, è possibile sommare “sommare i
+        caratteri” sfruttando il fatto che il codice ASCII rappresenta i caratteri come interi e che
+        a lettere consecutive corrispondono interi consecutivi (consiglio: determinate qual è la 
+        rappresentazione ASCII di A e poi “sottraetela” dalla rappresentazione di ogni lettera per
+        sapere qual è la “posizione” di ogni lettera nell’alfabeto.). Fare una versione alternativa
+        del main, in cui la parola chiave è una 5-stringa generata a caso, usando la function
+        rand(), il cui prototipo è in <stdlib.h>, per generare gli interi casuali. Si ricorda
+        che, se numero_casuale è dichiarata di tipo int, allora la chiamata
+        numero_casuale=rand()%(n+1); genera un numero casuale intero
+        (distribuzione uniforme) nell’insieme (0,1,2,..n). Usare sempre la srand() per rendere
+        automatica la scelta iniziale del seed della sequenza di numeri casuali. Nella Relazione si
+        deve riportare l’analisi della complessità di tempo dell’algoritmo (operazione dominante:
+        confronto)
+     
+        
+
+     <center><p><b>2)Archivio Telefonico</b><br></center>
+        <center><img src="images/rubrica telefonica.jpg" alt="Rubrica" width="400" height="350" </center><br><br><br>
+        Si vuole simulare l’archivio telefonico di un cellulare. Ogni nominativo è identificato
+        dal Cognome, Nome, numero telefonico. Provvedere all’implementazione
+        dell’algoritmo per la simulazione dell’archivio telefonico (massimo 30 nominativi).
+        Permettere, inoltre, all’utente di
+        • Inserire o cancellare un nominativo
+        • Dato il Cognome e il Nome di un utente visualizzare il numero telefonico
+        corrispondente (effettuare una ricerca binaria ricorsiva)
+        • Dato un numero telefonico vedere il numero totale di chiamate da e verso
+        quel numero
+        L’archivio può anche essere inizializzato con informazioni casuali. Effettuare almeno
+        due test per ognuna delle opzioni dell’utente. 
+        
+         
+         <center><h3>SOLUZIONI </h3>
+            <img src="images/soluzioni.png" alt="SOLUZIONI" width="400" height="350"> <br><br><hr>
+            <b>I Traccia</b><br>
+         <p><H3><b>Cifratura-decifratura</b><br></center> </H3>
+             <b>ANALISI DELL'ALGORITMO</b><br>
+             L'algoritmo in questione presenta due principali algoritmi da risolvere, il primo, la cifratura,che varia in base alla chiave, il secondo, la decifratura, che consiste nel riportare il testo cifrato a quello originale<br><br>
+             <b>CODICE SORGENTE</b><br>
+             <div class="spoiler"><div class="spoilerheader">
+                 <input type="button" class="spoilerbutton" value="Header" onclick="n = this.parentNode.parentNode.lastChild;if(n.style.display == 'none') {n.style.display = 'block';} else {n.style.display = 'none';} return false;"/></div>
+                 <div class="spoilerbody" style="display: none">
+                        #include <stdio.h><br>
+                        #include <stdlib.h> <br>
+                        #include "string.h" <br>
+                        #include <time.h> <br>
+                        void crittografare(char testo[], char chiave[]); <br>
+                        void decrittografare(char testo[], char chiave[]); <br>
+                        <br>
+                     </div></div>
+                 <hr />
+                 <div class="spoiler"><div class="spoilerheader">
+                 <input type="button" class="spoilerbutton" value="Implementazione" onclick="n = this.parentNode.parentNode.lastChild;if(n.style.display == 'none') {n.style.display = 'block';} else {n.style.display = 'none';} return false;"/></div>
+                 <div class="spoilerbody" style="display: none">
+                    #include "libreria.h" <br>
+                    <br>
+
+
+void crittografare(char testo[], char chiave[]) 
+{<br>
+    int n,i; <br>
+    <br>
+    n=strlen(testo);<br>
+    for(i=0; i<n; i++)
+    {<br>
+        if(chiave[i]!='A')
+        {<br>
+            testo[i]+= chiave[i]-'A'; <br>
+            if(testo[i]>'Z') <br>
+                testo[i]=testo[i]-26;<br>
+        } <br>
+    } <br>
+
+} <br>
+<br>
+<br>
+
+void decrittografare(char testo[], char chiave[])
+{ <br>
+   int n,i; <br>
+    n=strlen(testo); <br>
+    <br>
+    for(i=0; i<n; i++) 
+    { <br>
+        if(chiave[i]!='A')
+        { <br>
+            testo[i] = testo[i]-chiave[i]+'A'; <br>
+            if(testo[i]<'A') <br>
+                testo[i]=testo[i]+26; <br>
+        } <br>
+    } <br>
+} <br>
+
+                    </div></div>
+                     <hr />
+                     <div class="spoiler"><div class="spoilerheader">
+                         <input type="button" class="spoilerbutton" value="Main" onclick="n = this.parentNode.parentNode.lastChild;if(n.style.display == 'none') {n.style.display = 'block';} else {n.style.display = 'none';} return false;"/></div>
+                         <div class="spoilerbody" style="display: none">
+                            #include "libreria.h"<br>
+                           <br>
+
+<br>
+
+int main()
+{<br>
+   char testo[100]; <br>
+   char chiave[100]; <br>
+   <br>
+   printf("attenzione il TESTO e la CHIAVE devono essere maiuscoli\n"); <br>
+   printf("dammi il testo\n"); <br>
+   gets(testo);// inserimento del testo da crittografare  <br>
+   printf("dammi la chiave\n"); <br>
+   gets(chiave); //inserimento della chiave con cuo si crittografera' il messaggio <br>
+   <br>
+   printf("il testo e': %s\n", testo); //visualizzazione testo <br>
+   printf("la chiave e': %s\n", chiave); //visualizzazione chiave <br>
+   <br>
+   crittografare(testo,chiave);//chiamata per la crittografia <br>
+   printf("il testo crittografato e': %s\n", testo); //testo crittografato <br>
+   <br>
+   decrittografare(testo,chiave);//chiamata alla function della decrittografazione <br>
+   printf("il testo decrittografato e': %s\n", testo); //testo decrittografato <br>
+   <br>
+   return 0; <br>
+   <br>
+   <br>
+   //variante del main con distibuzione casuale<br>
+   int main()
+{ <br>
+    int i; <br>
+    char testo[6], chiave[6]; <br>
+    srand(time(NULL)); <br>
+    <br>
+    for(i=0; i<5; i++) <br>
+        testo[i] = rand()%26 + 65; <br>
+    for(i=0; i<5; i++) <br>
+        chiave[i] = rand()%26 + 65; <br>
+        <br>
+    printf("Il testo e': %s\n", testo); <br>
+    printf("La chiave e': %s\n", chiave); <br>
+    <br>
+    crittografare(testo, chiave); <br>
+    printf("Il testo criptato e': %s\n", testo); <br>
+    <br>
+    decrittografare(testo, chiave); <br>
+    printf("Il testo decriptato e': %s\n", testo); <br>
+    <br>
+    return 0; <br>
+}
+   <br></div></div>
+                                
+                     
+
+                                 <b>ANALISI DELLE FUNCTION</b><br><br>
+
+                               
+                                 FUNZIONE CIFRATURA<br>
+                                 <img src="images/FUNZIONE CIFRATURA.PNG" alt="FUNZIONE CIFRATURA"><br>
+                                 La function codifica il messaggio contenuto nel primo parametro, testo, in base alla chiave, contenuta nel secondo parametro, utilizzando il codice
+                                 asci per la codifica. Il testo criptato risultatante è restituito in output nel primo parametro, il principale blocco d'istruzione, inoltre, codifica se la lettera della chiave e' diversa da A grazie al codice asci aggiungendo
+                                 partendo dal testo il numero appertenente a chiave e sottraendo A che e il numero iniziale dell'alfabeto per dare la lettere
+                                 successiva alla chiave. 
+                            <br><br>
+                                 FUNZIONE DECIFRATURA<br>
+                                 <img src="images/FUNZIONE DECIFRATURA.PNG" alt="FUNZIONE DECIFRATURA"><br>
+                                 la function decodifica il messaggio contenuto nel primo parametro, testo, in base alla chiave, contenuta nel secondo parametro e utilizzando il codice
+                                 asci per la decodifica. Il testo decriptato risultatante è restituito in output nel primo parametro.Il ciclo for scorre la stringa testo per tutta la sua lunghezza (calcolata con la funzione strlen) e decrementa ciascun carattere di un
+                                 valore pari alla posizione nell'alfabeto del corrispondente carattere della chiave (chiave[i]-'A'). Se il valore risulatnte in codice ASCII scende al
+                                 di sotto di quello del carattere 'A', questo è incementato di 26, in modo che le lettere siano gestite in maniera circolare rispetto all'alfabeto<br><br>
+                                 </b><br><br>
+                                 
+                                 
+                                </p> <br>
+                                <b>TEST DEL FUNZIONAMENTO DEL PROGRAMMA</b><br><br>
+                                I tentativo<br>
+                                <center><img src="images/Main traccia.PNG" alt="Main traccia per debug" width="500" height="350"><br> <img src="images/I Tentativo.PNG" alt="I Tentativo" width="500" height="350"><br> </center> <br> <br>
+                                II tentativo main originale<br>
+                                <center><img src="images/Main II tentativo.PNG" alt="MAIN" width="550" height="350"><br>   <img src="images/II Tentattivo.PNG" alt="II Tentativo" width="550" height="350"><br> </center><br><br>
+                                III tentativo variante del main<br><br>
+                                <center><img src="images/Variante del Main.PNG" alt="VARIANTE DEL MAIN" width="550" height="350"><br>   <img src="images/III Tentativo.PNG" alt="III Tentativo"width="550" height="350"><br> </center>
+                                <br><br>
+                                 
+                                                 </div></div>
+                                                     </p><hr />
+    <center><b>II Traccia</center> </b><br><br>
+
+                                                     <b>ANALISI DELL'ALGORITMO</b><br>
+                                                     L'algoritmo chiede di simulare una rubrifica telefonica, bisogna prestare particolare attenzione alla struttura delle function e le chiamate di quest'ultime.
+                                                      lo scopo sarà riprodorru con successo una vera e propria rubrica telefonica proponendo all'utente di poter aggiungere, cancellare, cercare un numero con nome e cognome assegnato
+                                                      e di visualizzare il numero di chiamate effettuate e ricevute.  <br><br>
+                                                     <b>CODICE SORGENTE</b><br>
+                                                     <div class="spoiler"><div class="spoilerheader">
+                                                         <input type="button" class="spoilerbutton" value="Header" onclick="n = this.parentNode.parentNode.lastChild;if(n.style.display == 'none') {n.style.display = 'block';} else {n.style.display = 'none';} return false;"/></div>
+                                                         <div class="spoilerbody" style="display: none">
+                                                            <br>
+                                                             
+                                                            #include "stdio.h"<br>
+                                                                #include "stdlib.h"<br>
+                                                                #include "string.h"<br>
+                                                            typedef char stringa[100];<br>
+                                                            <br>
+struct archivio
+{<br>
+    stringa cognome[30];<br>
+    stringa nome[30];<br>
+    int Numero_telefonico[30];<br>
+    int numero_chiamate[30];<br>
+    int n;<br>
+};<br>
+typedef struct archivio archivio_telefonico;<br>
+<br>
+
+ 
+int inserisci_elemento(archivio_telefonico *, char *, char *, int);<br>
+
+<br>
+int ric_bin_ric(archivio_telefonico*  , stringa , stringa , int , int );<br>
+
+
+int trova_chiamate(archivio_telefonico *, int);<br>
+
+
+int trova_numero(archivio_telefonico *,stringa,stringa);<br>
+
+
+int cancella_numero( archivio_telefonico *,stringa, stringa);<br>
+
+
+int chiamata(archivio_telefonico *,stringa,stringa);<br>
+                                                             
+                                                             </div></div>
+                                                         <hr />
+                                                         <div class="spoiler"><div class="spoilerheader">
+                                                         <input type="button" class="spoilerbutton" value="Implementazione" onclick="n = this.parentNode.parentNode.lastChild;if(n.style.display == 'none') {n.style.display = 'block';} else {n.style.display = 'none';} return false;"/></div>
+                                                         <div class="spoilerbody" style="display: none">
+                                                            #include "libreria.h"<br>
+                                                            <br>
+int inserisci_elemento(archivio_telefonico* a, char *nome_ins, char *cognome_ins, int num)
+{<br>
+    if(a->n==30)<br>
+        return -1;<br>
+        <br>
+    int i=a->n;<br>
+    a->n++;<br>
+
+    <br>
+    while((strcmp(nome_ins, a->nome[i-1])<0 || strcmp(nome_ins,a->nome[i-1])==0 && strcmp(cognome_ins,a->cognome[i-1])<0)
+          && i>0){<br>
+        strcpy(a->nome[i],a->nome[i-1]);<br>
+        strcpy( a->cognome[i], a->nome[i-1]);<br>
+        a->Numero_telefonico[i]=a->Numero_telefonico[i-1];<br>
+        a->numero_chiamate[i]=a->numero_chiamate[i-1];<br>
+        i--;<br>
+    }<br>
+    
+    strcpy(a->nome[i], nome_ins);<br>
+    strcpy(a->cognome[i], cognome_ins);<br>
+    a->Numero_telefonico[i]=num;<br>
+    a->numero_chiamate[i]=0;<br>
+    <br>
+    return 1;<br>
+}
+int ric_bin_ric(archivio_telefonico* a , stringa nominativo, stringa cogn, int primo, int ultimo) {<br>
+    int mediano;<br>
+    <br>
+    if (primo > ultimo)<br>
+        return -1;<br>
+
+    
+        <br>
+    else<br>
+        mediano = (primo+ultimo)/2 ;<br>
+    if (strcmp(nominativo,a->nome[mediano])==0 && strcmp(cogn,a->cognome[mediano])==0)<br>
+        return mediano;<br>
+        <br>
+    else if (strcmp(nominativo,a->nome[mediano])<0 || strcmp(nominativo,a->nome[mediano])==0 && strcmp(cogn, a->cognome[mediano])<0)<br>
+        return ric_bin_ric(a,nominativo,cogn,primo,mediano-1) ;<br>
+    else<br>
+        return ric_bin_ric(a,nominativo,cogn,mediano+1,ultimo) ;<br>
+}<br>
+<br>
+int trova_numero(archivio_telefonico * a, stringa nome,stringa cognome)
+{<br>
+   int i;<br>
+   i= ric_bin_ric(a, nome, cognome,  0,  a->n-1);<br>
+   if(i<0)<br>
+    return -1;<br>
+   return a->Numero_telefonico[i];<br>
+   <br>
+}<br>
+
+int trova_chiamate(archivio_telefonico *a, int numero_inserito)
+{<br>
+    int i;<br>
+    for(i=0; i<a->n; i++)<br>
+        if(numero_inserito==a->Numero_telefonico[i])<br>
+            return a->numero_chiamate[i];<br>
+    return -1;<br>
+}<br><br>
+
+int chiamata(archivio_telefonico *a ,stringa nome,stringa cognome)
+{<br>
+    int i;<br>
+    i=ric_bin_ric( a,nome,  cognome, 0, a->n-1);<br>
+    if(i<0)<br>
+        return -1;<br>
+    a->numero_chiamate[i]++;<br>
+    return 1;<br>
+}<br>
+<br>
+int cancella_numero( archivio_telefonico * a, stringa nome, stringa cognome)
+{<br>
+    <br>
+    int i=ric_bin_ric( a,nome,  cognome, 0, a->n-1);<br>
+    if(i<0)<br>
+        return -1;<br>
+    while(i<a->n){<br>
+        strcpy(a->nome[i],a->nome[i+1]);<br>
+        strcpy( a->cognome[i], a->nome[i+1]);<br>
+        a->Numero_telefonico[i]=a->Numero_telefonico[i+1];<br>
+        a->numero_chiamate[i]=a->numero_chiamate[i+1];<br>
+        i++;<br>
+    }<br>
+    a->n--;<br>
+    <br>
+    return 1;<br>
+    <br>
+}<br>
+
+                                                            <br>
+                                                             </div></div>
+                                                             <hr />
+                                                             <div class="spoiler"><div class="spoilerheader">
+                                                                 <input type="button" class="spoilerbutton" value="Main" onclick="n = this.parentNode.parentNode.lastChild;if(n.style.display == 'none') {n.style.display = 'block';} else {n.style.display = 'none';} return false;"/></div>
+                                                                 <div class="spoilerbody" style="display: none">
+                                                                    #include "libreria.h"
+
+
+
+void main()
+{<br>
+    char nome_ins[100], cognome_ins[100];<br>
+    <br>
+    archivio_telefonico a;<br>
+    a.n = 0;<br>
+    int x=-1,num;<br>
+    <br>
+    while(x<5)
+    {<br>
+
+        printf("\n\npremi 0 se vuoi inserire un numero in rubrica\n premi 1 se vuoi cancellarlo\n premi 2 se vuoi vedere il numero di chiamate effettuate\n");<br>
+        printf("premi 3 se vuoi  chiamare\n premi 4 se vuoi cercare un numero in rubrica\n premi 5 se vuoi uscire dalla rubrica\n");<br>
+        scanf("%d",&x);<br>
+        switch(x)
+        {<br>
+            case 0:<br>
+            printf("inserisci il nome della persona\n");<br>
+            scanf("%s",nome_ins);<br>
+            printf("inserisci il cognome della persona\n");<br>
+            scanf("%s",cognome_ins);<br>
+            printf("inserisci numero di telefono\n");<br>
+            scanf("%d",&num);<br>
+            num = inserisci_elemento(&a,nome_ins,cognome_ins,num);<br>
+            if(num < 0)<br>
+                printf("Impossibile inserire un nuovo contatto, raggiunto il numero massimo di contatti in rubrica\n");<br>
+            else<br>
+                printf("Contatto aggiunto correttamente\n");<br>
+            break;<br>
+            <br>
+            case 1:<br>
+            printf("inserisci il nome della persona\n");<br>
+            scanf("%s", nome_ins);<br>
+            printf("inserisci il cognome della persona\n");<br>
+            scanf("%s", cognome_ins);<br>
+            num = cancella_numero (&a,nome_ins, cognome_ins);<br>
+            if(num<0)<br>
+                printf("contatto eliminato dalla rubrica\n\n");<br>
+            else<br>
+                printf("Contatto rimosso dalla rubrica\n\n");<br>
+            break;<br>
+
+            case 2:<br>
+            printf("inserisci numero di telefono\n");<br>
+            scanf("%d",&num);<br>
+            num = trova_chiamate(&a, num);<br>
+            if(num<0)<br>
+                printf("Il contatto non e' presente in rubrica\n\n");<br>
+            else<br>
+                printf("Il numero di chiamate e': %d\n", num);<br>
+            break;<br>
+            <br>
+            case 3:<br>
+            printf("inserisci il nome della persona\n");<br>
+            scanf("%s", nome_ins);<br>
+            printf("inserisci il cognome della persona\n");<br>
+            scanf("%s", cognome_ins);<br>
+            num = chiamata(&a , nome_ins, cognome_ins);<br>
+            if(num<0)<br>
+                printf("Il contatto non e' presente in rubrica\n\n");<br>
+            else<br>
+                printf("Chiamata effettuata\n\n");<br>
+            break;<br>
+
+            case 4:<br>
+            printf("inserisci il nome della persona\n");<br>
+            scanf("%s", nome_ins);<br>
+            printf("inserisci il cognome della persona\n");<br>
+            scanf("%s", cognome_ins);<br>
+            num = trova_numero(&a,nome_ins,cognome_ins);<br>
+            if(num<0)<br>
+                printf("Il contatto inserito non e' presente in rubrica\n\n");<br>
+            else<br>
+            printf("Il numero di %s e': %d\n", nome_ins, num);<br>
+            break;<br>
+            <br>
+            case 5:<br>
+                break;<br>
+                <br>
+            default:<br>
+                printf("Il numero inserito e' errato\n");<br>
+                break;<br>
+                <br>
+        }<br>
+    }<br>
+}<br>
+                                                                    </div></div>
+                                                                         </p><hr />
+                                                                         <center>
+                                                                         
+                                                                         
+                                     
+                                                                         <b>ANALISI DELLE FUNCTION</b><br><br>
+                                                                         FUNZIONE inserisci_elemento <br><br><br>
+                                                                         La funzione inserisci_elemento prende in ingresso l'archivio e nome, cognome e numero del contatto da inserire e lo inserisce in
+                                                                         maniera ordinata restituisce un valore negativo se l'archivio ha raggiunto il numero massimo di contatti. La funzione inserisci_elemento scorre gli array di nome e cognome. Tutti i contatti che, nell'ordine alfabetico,
+                                                                         seguono il contatto che si sta inserendo vengono spostati nella posizione successiva.
+                                                                         Un contatto viene prima di un altro in ordine alfabetico se il suo nome viene prima
+                                                                         oppure se il nome è lo stesso e il cognome viene prima <br><br><br>
+            <center><img src="images/inserisci_elemento.PNG" alt="Inserisci Elemento Ordinato"width="650" height="500">  </center> <br><br>
+                                                                         FUNZIONE ric_bin_ric <br>  <br> 
+                                                                         Esegue la ricerca binaria ricorsiva dell'indice del contatto in base al nome e cognome
+  in ingresso. se non ci sono contatti corrispondenti nell'archivio restituisce un valore negativo. Ogni ricorsione calcola la posizione centrale dell'array. Se il contatto che si sta cercando
+       corrisponde a quello nella posizione calcolata, tale posizione viene restituita dalla funzione.
+       Quando l'elemento centrale non corrisponde, se l'elemento ricercato viene prima in ordine alfabetico, 
+       viene chiamata ricorsivamente la funzione sulla metà destra dell'array (passando la posizione
+       centrale al posto dell'ultima), se l'elemento da inserire viene dopo la funzione viene chiamata sulla
+       metà sinistra (passando la posizione centrale al posto della prima). <br><br><br>
+    <center><img src="images/ricerca binaria ricorsiva.PNG" alt=" Ricerca binaria Ricorsiva "width="550" height="400"> </center>
+                                                                          
+                                                                         FUNZIONE trova_chiamate<br>  <br>
+                                                                         Prende in ingresso l'archivio e un numero telefonico di telefono e restituisce il numero di chiamate
+  totali per quel numero. Se il numero non è presente nell'archivio restituisce un valore negativo. <br><br><br>
+                                                                         <center><img src="images/visualizza chiamate.PNG" alt="Visualizza Chiamate"width="550" height="400">   </center><br>
+                                                                          <br> <br>
+                                                                         FUNZIONE trova_numero<br>  <br>
+                                                                        Prende in ingresso un archivio, il nome e il cognome di un contatto e rimuove il contatto
+dall'archivio, restituisce un valore negativo se il contatto inserito non è presente nell'archivio.<br><br><br>
+                                                                         <center> <img src="images/trova numero.PNG" alt="trova numero"width="550" height="400">  </center><br>
+                                                                         
+                                                                         FUNZIONE cancella_numero<br>  <br>
+                                                                         Prende in ingresso un archivio, il nome e il cognome di un contatto e rimuove il contatto
+dall'archivio, restituisce un valore negativo se il contatto inserito non è presente nell'archivio <br><br><br>
+                                                                         <center> <img src="images/cancella numero.PNG" alt="Cancella Numero"width="550" height="450">  </center><br>
+                                                                        
+                                                                         FUNZIONE chiamata<br>  <br>
+                                                                         Prende in ingresso un archivio telefonico, un nome e un cognome e simula una chiamata incrementando
+                                                                         il numero di chiamate per il contatto inserito. Se presente nell'archivio, restituisce un valore negativo <br> <br><br>
+                                                                         <center>  <img src="images/effettua chiamate.PNG" alt="Effettua chiamate"width="550" height="400"> </center><br><br>
+                                                                        
+                                                                            </center>
+            <center><b>Test Programma</b><br><br>
+            <b> I tentativo<br>
+            <img src="images/Aggiungi persona in rubrica tentativo.PNG" alt="Aggiungi persona in rubrica"><br><br>
+            II tentativo<br>
+            <img src="images/trova contatto in rubrica tentativo.PNG" alt="Trova contatto"><br><br>
+            III tentativo<br>
+            <img src="images/aggiungi chiamata tentativo debug.PNG" alt="aggiungi chiamata in rubrica"><br><br>
+            IV tentativo<br>
+            <img src="images/visualizza numero chiamate debug.PNG" alt="visualizza numero chiamate"><br><br>
+            V tentativo<br>
+            <img src="images/cancella numero rubrica debug.PNG" alt="Cancella numero"><br><br>
+        </center>
+                
+    </b>                                                       
+                                                     
+
+
+
+
+
+                                 
+                                
+                 
+
+
+
+
+
+
+             </p>
+</body>
+</html>

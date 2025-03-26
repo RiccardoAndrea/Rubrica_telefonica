@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1610359533 source:c:\users\ricca\onedrive\desktop\progetto esame\libreria.c
+	"libreria.h"
+
+1610008582 c:\users\ricca\onedrive\desktop\progetto esame\libreria.h
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	<time.h>
+
+1610360971 source:c:\users\ricca\onedrive\desktop\progetto esame\main.c
+	"libreria.h"
+
