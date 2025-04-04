@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "string.h"
-
+#include <gtk/gtk.h>
 
 typedef char stringa[100];
 
@@ -9,7 +9,7 @@ struct archivio
 {
     stringa cognome[30];
     stringa nome[30];
-    int Numero_telefonico[30];
+    long int Numero_telefonico[30];
     int numero_chiamate[30];
     int n;
 };
@@ -24,15 +24,15 @@ int inserisci_elemento(archivio_telefonico *, char *, char *, int);
 int ric_bin_ric(archivio_telefonico*  , stringa , stringa , int , int );
 
 /*Prende in ingresso l'archivio e un numero telefonico di telefono e restituisce il numero di chiamate
-  totali per quel numero. Se il numero non è presente nell'archivio restituisce un valore negativo */
-int trova_chiamate(archivio_telefonico *, int);
+  totali per quel numero. Se il numero non ï¿½ presente nell'archivio restituisce un valore negativo */
+long int trova_chiamate(archivio_telefonico *, long int);
 
 /*Prende in ingresso un archivio e il nome e il cognome di un contatto. Restituisce il numero del
   contatto inserito se presente nell'archivio, altrimenti restituisce un valore negativo */
 int trova_numero(archivio_telefonico *,stringa,stringa);
 
 /*Prende in ingresso un archivio, il nome e il cognome di un contatto e rimuove il contatto
-dall'archivio, restituisce un valore negativo se il contatto inserito non è presente nell'archivio */
+dall'archivio, restituisce un valore negativo se il contatto inserito non ï¿½ presente nell'archivio */
 int cancella_numero( archivio_telefonico *,stringa, stringa);
 
 /*Prende in ingresso un archivio telefonico, un nome e un cognome e simula una chiamata incrementando

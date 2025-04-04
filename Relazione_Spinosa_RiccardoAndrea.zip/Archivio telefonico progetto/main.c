@@ -1,17 +1,20 @@
 #include "libreria.h"
 
 /*
-il programma simula una rubrica telefonica nella quale è' possibile inserire un contatto,
+il programma simula una rubrica telefonica nella quale ï¿½' possibile inserire un contatto,
 visualizzarne il numero di chiamate e il numero telefonico o rimuoverlo.
 */
 
+
 void main()
 {
+    
     char nome_ins[100], cognome_ins[100];
 
     archivio_telefonico a;
     a.n = 0;
-    int x=-1,num;
+    int x=-1;
+    long int num;
 
     while(x<5)
     {
@@ -28,7 +31,7 @@ void main()
             scanf("%s",cognome_ins);
 
             printf("inserisci numero di telefono\n");
-            scanf("%d",&num);
+            scanf("%ld",&num);
             num = inserisci_elemento(&a,nome_ins,cognome_ins,num);
 
 
@@ -52,12 +55,12 @@ void main()
 
             case 2:
             printf("inserisci numero di telefono\n");
-            scanf("%d",&num);
+            scanf("%ld",&num);
             num = trova_chiamate(&a, num);
             if(num<0)
                 printf("Il contatto non e' presente in rubrica\n\n");
             else
-                printf("Il numero di chiamate e': %d\n", num);
+                printf("Il numero di chiamate e': %ld\n", num);
             break;
 
             case 3:
@@ -81,7 +84,7 @@ void main()
             if(num<0)
                 printf("Il contatto inserito non e' presente in rubrica\n\n");
             else
-                printf("Il numero di %s e': %d\n", nome_ins, num);
+                printf("Il numero di %s e': %ld\n", nome_ins, num);
             break;
 
             case 5:
@@ -94,6 +97,9 @@ void main()
         }
     }
 }
+
+
+
 
 
 

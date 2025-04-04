@@ -11,7 +11,7 @@ int inserisci_elemento(archivio_telefonico* a, char *nome_ins, char *cognome_ins
     /* Si scorrono gli array di nome e cognome. Tutti i contatti che, nell'ordine alfabetico,
        seguono il contatto che si sta inserendo vengono spostati nella posizione successiva.
        Un contatto viene prima di un altro in ordine alfabetico se il suo nome viene prima
-       oppure se il nome è lo stesso e il cognome viene prima*/
+       oppure se il nome ï¿½ lo stesso e il cognome viene prima*/
     while((strcmp(nome_ins, a->nome[i-1])<0 || strcmp(nome_ins,a->nome[i-1])==0 && strcmp(cognome_ins,a->cognome[i-1])<0)&& i>0){
         strcpy(a->nome[i],a->nome[i-1]);
         strcpy( a->cognome[i], a->cognome[i-1]);
@@ -29,16 +29,16 @@ int inserisci_elemento(archivio_telefonico* a, char *nome_ins, char *cognome_ins
 }
 int ric_bin_ric(archivio_telefonico* a , stringa nominativo, stringa cogn, int primo, int ultimo) {
     int mediano;
-    /* Quando l'indice del primo elemento supera quello dell'ultimo, il contatto non è nell'archivio*/
+    /* Quando l'indice del primo elemento supera quello dell'ultimo, il contatto non ï¿½ nell'archivio*/
     if (primo > ultimo)
         return -1;
 
     /* Ogni ricorsione calcola la posizione centrale dell'array. Se il contatto che si sta cercando
        corrisponde a quello nella posizione calcolata, tale posizione viene restituita dalla funzione.
        Quando l'elemento centrale non corrisponde, se l'elemento ricercato viene prima in ordine alfabetico,
-       viene chiamata ricorsivamente la funzione sulla metà destra dell'array (passando la posizione
+       viene chiamata ricorsivamente la funzione sulla metï¿½ destra dell'array (passando la posizione
        centrale al posto dell'ultima), se l'elemento da inserire viene dopo la funzione viene chiamata sulla
-       metà sinistra (passando la posizione centrale al posto della prima) */
+       metï¿½ sinistra (passando la posizione centrale al posto della prima) */
     else
         mediano = (primo+ultimo)/2 ;
     if (strcmp(nominativo,a->nome[mediano])==0 && strcmp(cogn,a->cognome[mediano])==0)
@@ -60,7 +60,7 @@ int trova_numero(archivio_telefonico * a, stringa nome,stringa cognome)
 
 }
 // visualizza il numero di chiamate effettuate da o verso un numero
-int trova_chiamate(archivio_telefonico *a, int numero_inserito)
+long int trova_chiamate(archivio_telefonico *a, long int numero_inserito)
 {
     int i;
     for(i=0; i<a->n; i++)
