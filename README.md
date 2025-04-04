@@ -64,16 +64,7 @@ La crittografia viene realizzata tramite una semplice cifra basata sul codice AS
     ./rubrica
     ```
 
-## Strutture Dati
+## Tecnologie Utilizzate
+- C
+- GTK per interfaccia
 
-La rubrica è implementata utilizzando una struttura chiamata `archivio_telefonico`, che contiene i seguenti campi:
-
-- `nome[]`: Array di stringhe per i nomi dei contatti.
-- `cognome[]`: Array di stringhe per i cognomi dei contatti.
-- `numero_telefonico[]`: Array di stringhe per i numeri telefonici.
-- `numero_chiamate[]`: Array che tiene traccia del numero di chiamate effettuate per ogni contatto.
-- `n`: Numero di contatti presenti nella rubrica.
-
-## Licenza
-
-Questo progetto è distribuito sotto la Licenza MIT. Vedi il file [LICENSE](LICENSE) per maggiori dettagli.
