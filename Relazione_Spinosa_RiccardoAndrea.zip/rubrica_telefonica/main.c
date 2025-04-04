@@ -1,6 +1,31 @@
 #include "header.h"
 #define MAX_CONTACTS 30
 
+
+
+
+int main(int argc, char ** argv)
+{
+    GtkApplication *app; // ✅ Dichiarazione della variabile app
+    int status;           // ✅ Dichiarazione della variabile status
+    // Crea una nuova applicazione GTK
+    app = gtk_application_new("com.example.rubrica", G_APPLICATION_DEFAULT_FLAGS);
+
+
+    // Collega la funzione create_window al segnale "activate"
+    g_signal_connect(app, "activate", G_CALLBACK(create_window), NULL);
+
+    // Avvia l'applicazione GTK (chiama create_window automaticamente)
+    status = g_application_run(G_APPLICATION(app), argc, argv);
+
+    // Libera la memoria dell'applicazione
+    g_object_unref(app);
+
+    return status;
+}
+
+
+/*
 void mostra_menu() {
     printf("Seleziona un'opzione:\n");
     printf("1. Inserisci contatto\n");
@@ -134,3 +159,4 @@ int main() {
 
     return 0;
 }
+*/

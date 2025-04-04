@@ -53,5 +53,8 @@ void leggi_contatti(const char * , archivio_telefonico * );
 void scrivi_contatti(const char * , archivio_telefonico * );
 
 
-
+void create_window(GtkApplication *app);
+void contatto_aggiunto(GtkWidget *widget, gpointer data);
+void aggiungi_contatto(GtkWidget *widget, gpointer data);
+void on_back_passed(GtkWidget *widget, gpointer data);
 
