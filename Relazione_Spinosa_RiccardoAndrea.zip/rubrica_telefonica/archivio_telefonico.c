@@ -1,6 +1,6 @@
 #include "header.h"
 
-int inserisci_elemento(archivio_telefonico* a, char *nome_ins, char *cognome_ins, char *num) // num è una stringa
+int inserisci_elemento(archivio_telefonico* a, const char *nome_ins, const char *cognome_ins,const char *num) // num è una stringa
 {
     if(a->n == 100)
         return -1;
@@ -51,6 +51,7 @@ int ric_bin_ric(archivio_telefonico* a , stringa nominativo, stringa cogn, int p
     else
         return ric_bin_ric(a,nominativo,cogn,mediano+1,ultimo) ;
 }
+
 // trova il numero ricercato tramite nome e cognome
 char * trova_numero(archivio_telefonico * a, stringa nome,stringa cognome)
 {

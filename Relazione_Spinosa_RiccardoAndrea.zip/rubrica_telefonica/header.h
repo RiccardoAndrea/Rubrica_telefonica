@@ -6,6 +6,22 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <gtk/gtk.h>
+#include <stdint.h>
+#include "levenshtein.h"
+
+//
+extern GtkWidget *global_vbox_contatti; // Declare as extern
+
+
+// DEFINIZIONE DELLA STRUTTURA PER PASSARE I WIDGET
+typedef struct {
+  GtkWidget *input_nome;      // WIDGET PER IL NOME
+  GtkWidget *input_cognome;   // WIDGET PER IL COGNOME
+  GtkWidget *input_numero;    // WIDGET PER IL NUMERO
+  GtkWidget *vbox;            // CONTAINER (VBOX) DELLA FINESTRA
+  GtkWidget *main_window;      //SCHERMATA INIZIALE
+} ContactData;
+
 
 
 typedef char stringa[30];
@@ -18,11 +34,12 @@ struct archivio
     int numero_chiamate[30];
     int n;
 };
+
 typedef struct archivio archivio_telefonico;
 
 /*prende in ingresso l'archivio e nome, cognome e numero del contatto da inserire e lo inserisce in
   maniera ordinata restituisce un valore negativo se l'archivio ha raggiunto il numero massimo di contatti */
-int inserisci_elemento(archivio_telefonico *, char *, char *, char *);
+int inserisci_elemento(archivio_telefonico *, const char *,const char *,const char *);
 
 /*Esegue la ricerca binaria ricorsiva dell'indice del contatto in base al nome e cognome
   in ingresso. se non ci sono contatti corrispondenti nell'archivio restituisce un valore negativo */
@@ -57,4 +74,8 @@ void create_window(GtkApplication *app);
 void contatto_aggiunto(GtkWidget *widget, gpointer data);
 void aggiungi_contatto(GtkWidget *widget, gpointer data);
 void on_back_passed(GtkWidget *widget, gpointer data);
-
+void aggiungi_barra_ricerca(GtkWidget *fixed, GtkWidget *main_window);
+void on_button_clicked(GtkButton *button, gpointer user_data);
+void ricerca_contatti(GtkEntry *entry, gpointer user_data);
+void inoltra_chiamata(GtkWidget *widget, gpointer data);
+void cancella_contatto(GtkWidget *widget, gpointer data);

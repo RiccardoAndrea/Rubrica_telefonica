@@ -1,0 +1,79 @@
+/* ===== TEMA PRINCIPALE ===== */
+window.background {
+    background-color: #423939;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ===== TITOLO "CONTATTI" ===== */
+.title-label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 10px 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* ===== BOTTONE AGGIUNGI (+) ===== */
+.icon-button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    transition: all 0.3s ease;
+    padding: 8px;
+}
+
+.icon-button:hover {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+}
+
+
+/* ===== LISTA CONTATTI ===== */
+.contact-button {
+    background: white;
+    color: #34495e;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 8px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    font-size: 15px;
+}
+
+.contact-button:hover {
+    background: #f1f8fe;
+    
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+
+
+/* ===== FINESTRA SCROLLABILE ===== */
+.scrolled-window {
+    background: transparent;
+    border: none;
+    margin: 10px;
+}
+
+scrolledwindow viewport {
+    background: transparent;
+}
+
+/* ===== BARRA DI SCORRIMENTO ===== */
+scrollbar slider {
+    background-color: #bdc3c7;
+    border-radius: 3px;
+    min-width: 8px;
+}
+
+scrollbar slider:hover {
+    background-color: #95a5a6;
+}
+
+scrollbar trough {
+    background-color: #ecf0f1;
+    border-radius: 5px;
+}
