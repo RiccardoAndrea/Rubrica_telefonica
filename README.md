@@ -26,13 +26,10 @@ I contatti vengono memorizzati in file separati:
 La crittografia viene realizzata tramite una semplice cifra basata sul codice ASCII dei caratteri. I contatti e le chiavi sono criptati in modo circolare per impedire la visualizzazione diretta dei dati.
 
 ### Funzioni principali
-
-1. **inserisci_elemento()**: Inserisce un nuovo contatto, ordinato alfabeticamente.
-2. **ric_bin_ric()**: Funzione ricorsiva di ricerca binaria per trovare un contatto in base al nome e cognome.
-3. **trova_numero()**: Trova il numero telefonico di un contatto dato il nome e cognome.
-4. **trova_chiamate()**: Restituisce il numero di chiamate effettuate verso o da un numero.
-5. **chiamata()**: Incrementa il contatore delle chiamate per un contatto specificato.
-6. **cancella_numero()**: Rimuove un contatto dalla rubrica.
+implementa le funzionalità di una rubrica telefoni.
+Supponiamo che un ente pubblico necessiti di una rubrica contenente i dipendenti pubblici. Dall'applicazione desktop puo visualizzare i contatti fornire numeri aggiungerli o cancellarli.
+Caso D'uso di esempio.
+Si allaga la scuola e bisogna reperire il numero del dipendente di turno che possiede la reperibilità. Segnalata l'urgenza cerca il contatto telefonica e lo chiama, messaggia o invia una notifica.
 
 ## Compilazione e Esecuzione
 
@@ -44,25 +41,11 @@ La crittografia viene realizzata tramite una semplice cifra basata sul codice AS
 
 ### Istruzioni per la compilazione
 
-1. Clona il repository:
+1. esegui il comando
     ```bash
-    git clone https://github.com/tuo-utente/rubrica-telefonica.git
-    ```
+    gcc -o main main.c gestione_file.c archivio_telefonico.c cifratura_decifratura.c gui.c levenshtein.c $(pkg-config --cflags --libs gtk+-3.0)
 
-2. Entra nella cartella del progetto:
-    ```bash
-    cd rubrica-telefonica
-    ```
 
-3. Compila il progetto:
-    ```bash
-    gcc -o rubrica main.c
-    ```
-
-4. Esegui il programma:
-    ```bash
-    ./rubrica
-    ```
 
 ## Tecnologie Utilizzate
 - C
