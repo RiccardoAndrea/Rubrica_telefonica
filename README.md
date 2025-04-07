@@ -35,7 +35,7 @@ Si allaga la scuola e bisogna reperire il numero del dipendente di turno che pos
 
 ### Prerequisiti
 
-- Un sistema Linux
+
 - Compilatore C (gcc)
 - Librerie standard C
 
@@ -44,6 +44,9 @@ Si allaga la scuola e bisogna reperire il numero del dipendente di turno che pos
 1. esegui il comando
     ```bash
     gcc -o main main.c gestione_file.c archivio_telefonico.c cifratura_decifratura.c gui.c levenshtein.c $(pkg-config --cflags --libs gtk+-3.0)
+2. se ti trovi già su linux puoi anche direttamente lanciare l'eseguibile con il comando
+    ```bash
+    ./main
 
 
 
