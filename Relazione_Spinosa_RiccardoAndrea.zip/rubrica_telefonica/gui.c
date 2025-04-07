@@ -182,8 +182,8 @@ void create_window(GtkApplication *app) {
     gtk_style_context_add_class(gtk_widget_get_style_context(titolo), "title-label");
     gtk_container_add(GTK_CONTAINER(vbox_scroll), titolo);
 
-      // Salva il contenitore globale (lo useremo per aggiornare la lista dei contatti)
-      global_vbox_contatti = vbox_scroll;
+    // Salva il contenitore globale (lo useremo per aggiornare la lista dei contatti)
+    global_vbox_contatti = vbox_scroll;
     
     //leggo i contatti
     leggi_contatti("contatti.txt", &rubrica);
@@ -193,9 +193,7 @@ void create_window(GtkApplication *app) {
     for (int i = 0; i < n; i++) {
         char label[100];
         strcpy(label, rubrica.nome[i]);  // Copia il nome in label
-        strcpy(global_numero_telefonico, rubrica.numero_telefonico[i]); // copia in variabile globale
-        strcpy(global_nome, label);
-        strcpy(global_cognome, rubrica.cognome[i]);
+  
         strcat(label, " ");              // Aggiungi uno spazio tra nome e cognome
         strcat(label, rubrica.cognome[i]); // Aggiungi il cognome    
         GtkWidget *button = gtk_button_new_with_label(label);
@@ -203,10 +201,13 @@ void create_window(GtkApplication *app) {
         gtk_container_add(GTK_CONTAINER(vbox_scroll), button);
     
         // Alloca un nuovo blocco di memoria per il callback (per ogni bottone)
-        gpointer *callback_data2 = g_malloc(sizeof(gpointer) * 2);
+        gpointer *callback_data2 = g_malloc(sizeof(gpointer) * 5);
         callback_data2[0] = app;
         callback_data2[1] = window; // passiamo anche la finestra principale
-    
+        callback_data2[2] = g_strdup(rubrica.nome[i]);  
+        callback_data2[3] = g_strdup(rubrica.cognome[i]);  
+        callback_data2[4] = g_strdup(rubrica.numero_telefonico[i]);  
+
         // Collega il segnale "clicked" al callback
         g_signal_connect_data(button, "clicked", G_CALLBACK(on_button_clicked),
                                 callback_data2, NULL, 0); // Rimuovi g_free dalla closure notify
@@ -296,7 +297,15 @@ void on_button_clicked(GtkButton *button, gpointer user_data) {
     // apriamo la nuova finestra grazie alla calback passata
     callback_data = (gpointer *)user_data;
     main_window = (GtkWindow *)callback_data[1];
-    app = (GtkApplication *)callback_data[0];  
+    app = (GtkApplication *)callback_data[0];
+    char* nome = callback_data[2];  // Nome
+    char* cognome = callback_data[3];  // Cognome
+    char* numero_telefonico = callback_data[4];  // Numero telefonico  
+    // Salva i dati nelle variabili globali
+    printf("il nome  e; %s\n",nome);
+    strcpy(global_nome, nome);
+    strcpy(global_cognome, cognome);
+    strcpy(global_numero_telefonico, numero_telefonico);
     window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(window), "Info Contatto");
     gtk_window_set_default_size(GTK_WINDOW(window), 500, 500);
@@ -349,7 +358,7 @@ void on_button_clicked(GtkButton *button, gpointer user_data) {
 
     g_signal_connect(icon_button_telefono, "clicked", G_CALLBACK(inoltra_chiamata), NULL);
 
-    g_signal_connect(icon_button_cestino, "clicked", G_CALLBACK(cancella_contatto), NULL);
+    g_signal_connect(icon_button_cestino, "clicked", G_CALLBACK(cancella_contatto), main_window);
 
     g_print("Il bottone è stato cliccato!\n");
    
@@ -399,15 +408,45 @@ void ricerca_contatti(GtkEntry *entry, gpointer user_data)
     GtkApplication *app = gtk_window_get_application(GTK_WINDOW(main_window));
     // ***ESTRAIAMO IL TESTO INSERITO NEL CAMPO DI RICERCA***
     const char *text = gtk_entry_get_text(entry);
+    archivio_telefonico rubrica;
     if (strlen(text) == 0) {
-        // Il testo è vuoto, quindi fai qualcosa (ad esempio, nascondi i risultati della ricerca)
-        g_print("La ricerca è vuota.\n");
-        gtk_window_close(GTK_WINDOW(main_window));
-        create_window(app);
+        if (global_vbox_contatti) {
+            // Rimuovi tutti i figli attuali
+            GList *children = gtk_container_get_children(GTK_CONTAINER(global_vbox_contatti));
+            for (GList *iter = children; iter != NULL; iter = iter->next) {
+                gtk_widget_destroy(GTK_WIDGET(iter->data));
+            }
+            g_list_free(children);
+        }
+        leggi_contatti("contatti.txt", &rubrica);
+        const int n = rubrica.n;
+        g_print("Numero di contatti: %d\n", rubrica.n);
+        
+        for (int i = 0; i < n; i++) {
+            char label[100];
+            strcpy(label, rubrica.nome[i]);  // Copia il nome in label
+      
+            strcat(label, " ");              // Aggiungi uno spazio tra nome e cognome
+            strcat(label, rubrica.cognome[i]); // Aggiungi il cognome    
+            GtkWidget *button = gtk_button_new_with_label(label);
+            gtk_style_context_add_class(gtk_widget_get_style_context(button), "contact-button");
+            gtk_container_add(GTK_CONTAINER(global_vbox_contatti), button);  
+            gpointer *callback_data2 = g_malloc(sizeof(gpointer) * 5);
+            callback_data2[0] = app;
+            callback_data2[1] = main_window; // passiamo anche la finestra principale
+            callback_data2[2] = g_strdup(rubrica.nome[i]);  
+            callback_data2[3] = g_strdup(rubrica.cognome[i]);  
+            callback_data2[4] = g_strdup(rubrica.numero_telefonico[i]);  
+    
+            // Collega il segnale "clicked" al callback
+            g_signal_connect_data(button, "clicked", G_CALLBACK(on_button_clicked),
+                                    callback_data2, NULL, 0); // Rimuovi g_free dalla closure notify
+        }
+         // Mostra il contenitore aggiornato
+         gtk_widget_show_all(global_vbox_contatti);
     } 
     else{
         g_print("Ricerca per: %s\n", text);
-        archivio_telefonico rubrica;
         leggi_contatti("contatti.txt", &rubrica);
         int n = rubrica.n, indice_i = -1;
         size_t distanza, min = SIZE_MAX;
@@ -439,8 +478,18 @@ void ricerca_contatti(GtkEntry *entry, gpointer user_data)
                 snprintf(label, sizeof(label), "%s %s", rubrica.nome[indice_i], rubrica.cognome[indice_i]);
                 GtkWidget *button = gtk_button_new_with_label(label);
                 gtk_container_add(GTK_CONTAINER(global_vbox_contatti), button);
-                g_signal_connect(button, "clicked", G_CALLBACK(on_button_clicked), NULL);
                 
+                gpointer *callback_data2 = g_malloc(sizeof(gpointer) * 5);
+                callback_data2[0] = app;
+                callback_data2[1] = main_window; // passiamo anche la finestra principale
+                callback_data2[2] = g_strdup(rubrica.nome[indice_i]);  
+                callback_data2[3] = g_strdup(rubrica.cognome[indice_i]);  
+                callback_data2[4] = g_strdup(rubrica.numero_telefonico[indice_i]);  
+        
+                // Collega il segnale "clicked" al callback
+                g_signal_connect_data(button, "clicked", G_CALLBACK(on_button_clicked),
+                                        callback_data2, NULL, 0); // Rimuovi g_free dalla closure notify
+            
                 // Mostra il contenitore aggiornato
                 gtk_widget_show_all(global_vbox_contatti);
             }
@@ -475,16 +524,26 @@ void inoltra_chiamata(GtkWidget *widget, gpointer data)
 
 void cancella_contatto(GtkWidget *widget, gpointer data)
 {
+    // Recupera la finestra principale dal parametro user_data
+    GtkWidget *main_window = GTK_WIDGET(data);
+    // Recupera l'applicazione dalla finestra
+    GtkApplication *app = gtk_window_get_application(GTK_WINDOW(main_window));
+    //parente finestra
+    GtkWidget *parent_window = gtk_widget_get_toplevel(widget);
     archivio_telefonico rubrica;
     leggi_contatti("contatti.txt", &rubrica);
     if (cancella_numero(&rubrica, global_nome, global_cognome) == 1) {
         printf("Contatto cancellato con successo.\n");
         printf("\n\n");
+       
         
     } else {
         printf("Contatto non trovato.\n");
         printf("\n\n");
     }
+    gtk_window_close(GTK_WINDOW(parent_window)); // CHIUDI LA FINESTRA
+    gtk_window_close(GTK_WINDOW(main_window));
+    create_window(app);
 }
 
 
