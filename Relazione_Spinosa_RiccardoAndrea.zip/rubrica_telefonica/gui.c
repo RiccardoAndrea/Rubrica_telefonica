@@ -186,10 +186,17 @@ void create_window(GtkApplication *app) {
     global_vbox_contatti = vbox_scroll;
     
     //leggo i contatti
+    rubrica.n=0;
     leggi_contatti("contatti.txt", &rubrica);
     const int n = rubrica.n;
     g_print("Numero di contatti: %d\n", rubrica.n);
     
+    if (n == 0) {
+        // Aggiungi un messaggio che indica che non ci sono contatti
+        GtkWidget *no_contacts_label = gtk_label_new("Nessun contatto disponibile.");
+        gtk_style_context_add_class(gtk_widget_get_style_context(no_contacts_label), "title-label");
+        gtk_container_add(GTK_CONTAINER(vbox_scroll), no_contacts_label);
+    }
     for (int i = 0; i < n; i++) {
         char label[100];
         strcpy(label, rubrica.nome[i]);  // Copia il nome in label
@@ -409,6 +416,7 @@ void ricerca_contatti(GtkEntry *entry, gpointer user_data)
     // ***ESTRAIAMO IL TESTO INSERITO NEL CAMPO DI RICERCA***
     const char *text = gtk_entry_get_text(entry);
     archivio_telefonico rubrica;
+    rubrica.n = 0;
     if (strlen(text) == 0) {
         if (global_vbox_contatti) {
             // Rimuovi tutti i figli attuali
