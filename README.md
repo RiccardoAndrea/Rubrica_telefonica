@@ -5,11 +5,12 @@ Questo progetto implementa un sistema di gestione di una rubrica telefonica in C
 ## Funzionalità
 
 1. **Aggiunta di contatti**: Inserimento di nuovi contatti nella rubrica. I contatti vengono ordinati automaticamente in ordine alfabetico.
-2. **Ricerca contatti**: Utilizzo della ricerca binaria per cercare un contatto in base al nome e cognome.
+2. **Ricerca contatti**: Ricerca autocomplete mediante distanza di Levenshtein.
 3. **Visualizzazione delle chiamate**: Ogni contatto ha un contatore che tiene traccia del numero di chiamate effettuate da o verso quel contatto.
 4. **Effettuare chiamate**: Incremento del contatore delle chiamate per ogni chiamata effettuata a un contatto.
-5. **Cancellazione di contatti**: Rimozione di un contatto dalla rubrica.
+5. **Cancellazione di contatti**: Rimozione di un contatto dalla rubrica. Utilizzo della ricerca binaria per cercare un contatto con nome e cognome.
 6. **Criptografia dei dati**: Tutti i dati sensibili (nome, cognome, numero di telefono) sono criptati con una chiave generata e gestita separatamente.
+
 
 ## Come funziona
 
