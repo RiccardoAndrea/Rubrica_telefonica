@@ -39,6 +39,7 @@ Si allaga la scuola e bisogna reperire il numero del dipendente di turno che pos
 
 - Compilatore C (gcc)
 - Librerie standard C
+- Gtk
 
 ### Istruzioni per la compilazione
 
