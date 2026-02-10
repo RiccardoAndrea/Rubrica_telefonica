@@ -58,5 +58,5 @@ Si allaga la scuola e bisogna reperire il numero del dipendente di turno che pos
 
 
 ## Demo
-Presente come file scaricabile o visualizzabile al link:  
-[La demo di Pepper Autism Test App](https://www.youtube.com/watch?v=SCEg69CoHUE)
+visualizzabile al link:  
+[La demo di Rubrica Telefonica Con Criptografia](https://www.youtube.com/watch?v=SCEg69CoHUE)
