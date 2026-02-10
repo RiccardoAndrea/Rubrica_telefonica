@@ -56,3 +56,7 @@ Si allaga la scuola e bisogna reperire il numero del dipendente di turno che pos
 - C
 - GTK per interfaccia
 
+
+## Demo
+Presente come file scaricabile o visualizzabile al link:  
+[La demo di Pepper Autism Test App](https://www.youtube.com/watch?v=SCEg69CoHUE)
